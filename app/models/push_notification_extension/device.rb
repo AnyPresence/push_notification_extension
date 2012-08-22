@@ -33,7 +33,7 @@ module PushNotificationExtension
 private
 
   def scrub_token
-    self.token = token.sub(/\s|<|>/,'')
+    self.token = token.gsub(/\s|<|>/,'')
   end
 
   end
