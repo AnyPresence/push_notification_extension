@@ -11,7 +11,7 @@ module PushNotificationExtension
 
     has_and_belongs_to_many :devices, :class_name => "PushNotificationExtension::Device"
 
-    def publish(badge = 0, alert, message_payload = {})
+    def publish(badge = 0, alert, message_payload)
       ios_notifications = []
       android_notifications = []
       devices.each do |device|

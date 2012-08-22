@@ -14,7 +14,7 @@ module PushNotificationExtension
     # Device type, currently only iOS or Android.
     field :type, type: String
 
-    validates :token, presence: true, uniqueness: { scope: :type }
+    validates :token, presence: true, uniqueness: { scope: :type }, format: { without: /null/ }
     validates :type, presence: true, inclusion: { in: TYPES }
 
     attr_accessible :token, :type
