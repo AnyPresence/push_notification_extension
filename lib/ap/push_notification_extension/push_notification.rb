@@ -10,6 +10,14 @@ module AP
         @@config[:gcm_api_key] = config[:gcm_api_key]
         @@config[:apple_cert] = config[:apple_cert]
         @@config[:apple_cert_password] = config[:apple_cert_password]
+        
+        # This is for production apps/certs only.
+        # APNS.host = 'gateway.push.apple.com' 
+
+        APNS.pem  = "#{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}"
+        APNS.pass = ::AP::PushNotificationExtension::PushNotification.config[:apple_cert_password] unless ::AP::PushNotificationExtension::PushNotification.config[:apple_cert_password].blank?
+
+        APNS.port = 2195
       end
       def self.config
         @@config
