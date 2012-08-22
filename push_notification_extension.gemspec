@@ -50,6 +50,10 @@ Gem::Specification.new do |s|
             "type": "String",
             "description": "Value to set on the badge."
           },
+          "alert": {
+            "type": "String",
+            "description": "Value display in an alert."
+          },
           "message_payload": {
             "type": "String",
             "description": "JSON object containing extra information you would like to pass to the device."

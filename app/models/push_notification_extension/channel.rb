@@ -11,12 +11,12 @@ module PushNotificationExtension
 
     has_and_belongs_to_many :devices, :class_name => "PushNotificationExtension::Device"
 
-    def publish(badge = 0, message_payload = {})
+    def publish(badge = 0, alert, message_payload = {})
       ios_notifications = []
       android_notifications = []
       devices.each do |device|
         Rails.logger.info "Sending message #{message_payload}, with badge number #{badge}, to device #{device.token} of type #{device.type} for channel #{name}"
-        ios_notifications << APNS::Notification.new(device.token, badge: badge, other: message_payload) if device.ios?
+        ios_notifications << APNS::Notification.new(device.token, badge: badge, alert: alert, other: message_payload) if device.ios?
         android_device_tokens << device.token if device.android?
       end
       if Rails.env.production?

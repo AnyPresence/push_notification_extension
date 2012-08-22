@@ -1,6 +1,7 @@
 module PushNotificationExtension
   class PubSubController < ApplicationController
     before_filter :detect_mobile_os, only: [ :subscribe, :unsubscribe ]
+    protect_from_forgery :except => [:subscribe, :unsubscribe, :publish]
 
     def subscribe
       device = ::PushNotificationExtension::Device.where(token: params[:device_token], type: @device_type).first || ::PushNotificationExtension::Device.create(token: params[:device_token], type: @device_type)
@@ -43,7 +44,7 @@ module PushNotificationExtension
       channel = ::PushNotificationExtension::Channel.where(name: params[:channel]).first
       if channel
         begin
-          channel.publish params[:badge], params[:message_payload]
+          channel.publish params[:badge], params[:alert], params[:message_payload]
           render :json => { :success => true }
         rescue
           render :json => { :success => false, :error => $!.message }
