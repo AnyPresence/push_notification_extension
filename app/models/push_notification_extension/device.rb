@@ -17,6 +17,8 @@ module PushNotificationExtension
     validates :token, presence: true, uniqueness: { scope: :type }, format: { without: /null/ }
     validates :type, presence: true, inclusion: { in: TYPES }
 
+    before_create :scrub_token
+
     attr_accessible :token, :type
 
     has_and_belongs_to_many :channels, :class_name => "PushNotificationExtension::Channel"
@@ -28,6 +30,11 @@ module PushNotificationExtension
     def android?
       type.eql? ANDROID
     end
+private
+
+  def scrub_token
+    self.token = token.sub(/\s|<|>/,'')
+  end
 
   end
 end

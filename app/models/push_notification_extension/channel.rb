@@ -20,8 +20,8 @@ module PushNotificationExtension
         android_device_tokens << device.token if device.android?
       end
       if Rails.env.production?
-        gcm = GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]) if AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]
-        gcm.send_notification(android_device_tokens, data: message_payload ) if android_device_tokens
+        # gcm = GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]) if AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]
+        # gcm.send_notification(android_device_tokens, data: message_payload ) if android_device_tokens
         APNS.send_notifications(ios_notifications) if ios_notifications
       end
     end
