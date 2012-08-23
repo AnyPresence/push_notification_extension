@@ -4,7 +4,7 @@ module PushNotificationExtension
     protect_from_forgery :except => [:subscribe, :unsubscribe, :publish]
 
     def subscribe
-      device = ::PushNotificationExtension::Device.where(token: params[:device_token], type: @device_type).first || ::PushNotificationExtension::Device.create(token: params[:device_token], type: @device_type)
+      device = ::PushNotificationExtension::Device.where(token: ::PushNotificationExtension::Device.scrub_token(params[:device_token]), type: @device_type).first || ::PushNotificationExtension::Device.create(token: params[:device_token], type: @device_type)
       Rails.logger.info "Received subscription request from mobile device: " + device.inspect
       if device.persisted?
         channel = ::PushNotificationExtension::Channel.where(name: params[:channel]).first || ::PushNotificationExtension::Channel.create(name: params[:channel])
