@@ -11,7 +11,7 @@ module AP
         @@config[:apple_cert] = config[:apple_cert]
         @@config[:apple_cert_password] = config[:apple_cert_password]
 
-        cert_valid? = false
+        cert_valid = false
         if @@config[:apple_cert] && File.file?("#{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}")
 
           APNS.pem  = "#{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}"
@@ -25,9 +25,9 @@ module AP
           end
           pem_file.close
           APNS.port = 2195
-          cert_valid? = true
+          cert_valid = true
         end
-        raise "No push services configured!" unless cert_valid? || @@config[:gcm_api_key]
+        raise "No push services configured!" unless cert_valid || @@config[:gcm_api_key]
       end
       def self.config
         @@config
