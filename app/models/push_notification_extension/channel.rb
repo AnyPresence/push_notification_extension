@@ -23,7 +23,8 @@ module PushNotificationExtension
       if Rails.env.production?
         hashed_message_payload = nil
         begin
-          json_rep = JSON.parse(message_payload).to_json
+          json_rep = "{\"data\":\"#{message_payload}\"}"
+          json_rep = JSON.parse(json_rep).to_json
           hashed_message_payload = ActiveSupport::JSON.decode(json_rep)
         rescue
           Rails.logger.error "Unable to parse the message payload for android: " + $!.message
