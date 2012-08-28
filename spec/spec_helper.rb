@@ -4,6 +4,7 @@ require File.expand_path("../../spec/dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'database_cleaner'
+require 'push_notification_extension'
 
 require 'factory_girl'
 
