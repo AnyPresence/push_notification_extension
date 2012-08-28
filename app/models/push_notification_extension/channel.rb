@@ -30,8 +30,10 @@ module PushNotificationExtension
           Rails.logger.error $!.backtrace.join("\n")
         end  
         
-        gcm = GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]) if AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]
-        gcm.send_notification(android_device_tokens, data: hashed_message_payload) if android_device_tokens
+        unless hashed_message_payload.nil?
+          gcm = GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]) if AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]
+          gcm.send_notification(android_device_tokens, data: hashed_message_payload) if android_device_tokens
+        end
         
         APNS.send_notifications(ios_notifications) if ios_notifications
       end
