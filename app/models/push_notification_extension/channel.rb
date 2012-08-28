@@ -23,7 +23,9 @@ module PushNotificationExtension
       if Rails.env.production?
         hashed_message_payload = nil
         begin
-          json_rep = "{\"data\":\"#{message_payload}\"}"
+          # Note that that app icons cannot be modified on the android side. This count will have to be displayed in 
+          # a widget or from the notification system.
+          json_rep = "{\"data\":\"#{message_payload}\",\"badge\":#{badge}}"
           json_rep = JSON.parse(json_rep).to_json
           hashed_message_payload = ActiveSupport::JSON.decode(json_rep)
         rescue
