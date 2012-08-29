@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] = "test"
 #require File.expand_path("../../test/dummy/config/environment.rb", __FILE__)
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
+require "mocha"
 
 require 'database_cleaner'
 
@@ -30,4 +31,4 @@ Rails.backtrace_cleaner.remove_silencers!
 #if ActionController::TestCase.method_defined?(:fixture_path=)
 # ActionController::TestCase.fixture_path =   File.expand_path("../fixtures", __FILE__)
 #end
-require 'mocha'
+
