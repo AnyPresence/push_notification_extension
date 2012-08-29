@@ -37,6 +37,7 @@ InstalledFiles
 certificates/*
 .bundle.tddium*
 .tddium
+test/dummy/log/*
 
 
 # ignore the mongoid folder
