@@ -5,7 +5,7 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'rspec-rails'
+#gem 'rspec-rails'
 gem "mongoid", "2.4.12"
 gem "apns", '1.0.0', git: 'git://github.com/jpoz/APNS.git'
 gem "gcm", '0.0.2'
@@ -13,6 +13,8 @@ gem 'mongo', '<= 1.6.2'
 gem 'bson', '~> 1.6.4' 
 gem 'bson_ext', '~> 1.6.4'
 gem 'actionpack'
+
+gem "jquery-rails"
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

@@ -64,6 +64,7 @@ Gem::Specification.new do |s|
 RUBY
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile"]
+  s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.8"
   s.add_dependency "json"
@@ -76,7 +77,7 @@ RUBY
   s.add_dependency "liquid"
 
   s.add_development_dependency "database_cleaner"
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "rspec-rails"
+  #s.add_development_dependency "rspec"
+  #s.add_development_dependency "rspec-rails"
   s.add_development_dependency "factory_girl", "= 3.3.0"
 end
