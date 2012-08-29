@@ -28,6 +28,7 @@ rdoc
 pkg
 test/tmp
 test/version_tmp
+test/dummy/log/*
 tmp
 pkg
 lib/bundler/man
@@ -37,7 +38,6 @@ InstalledFiles
 certificates/*
 .bundle.tddium*
 .tddium
-test/dummy/log/*
 
 
 # ignore the mongoid folder
