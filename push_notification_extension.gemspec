@@ -80,4 +80,5 @@ RUBY
   #s.add_development_dependency "rspec"
   #s.add_development_dependency "rspec-rails"
   s.add_development_dependency "factory_girl", "= 3.3.0"
+   s.add_development_dependency "ruby-debug19"
 end

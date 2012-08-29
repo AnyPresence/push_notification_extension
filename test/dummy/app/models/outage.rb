@@ -5,7 +5,6 @@ class Outage
   
   # Field definitions
   
-  field :"_id", as: :id, type: String
   field :"title", type: String
  
 end

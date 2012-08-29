@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class OutagesControllerTest < ActionController::TestCase
+  
   setup do
-    @outage = outages(:one)
+    #@outage = outages(:one)
+    @outage = FactoryGirl.create(:outage)
   end
 
   test "should get index" do
