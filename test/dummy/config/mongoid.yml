@@ -1,11 +1,25 @@
 development:
-  host: localhost
-  database: push_notification_extension_development
-
+  # Configure available database sessions. (required)
+  sessions:
+    # Defines the default session. (required)
+    default:
+      # Defines the name of the default database that Mongoid can connect to.
+      # (required).
+      database: push_notification_extension_development
+      # Provides the hosts the default session can connect to. Must be an array
+      # of host:port pairs. (required)
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+  # Configure Mongoid specific options. (optional)
+  options:
 test:
-  host: localhost
-  database: push_notification_extension_test
-
-production:
-  host: localhost
-  database: push_notification_extension_production
+  sessions:
+    default:
+      database: push_notification_extension_test
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+        raise_not_found_error: true

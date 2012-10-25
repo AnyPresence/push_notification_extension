@@ -6,12 +6,9 @@ source "http://rubygems.org"
 gemspec
 
 #gem 'rspec-rails'
-gem "mongoid", "2.4.12"
+gem 'mongoid', '~> 3.0.6'
 gem "apns", '1.0.0', :git => 'git://github.com/jpoz/APNS.git'
 gem "gcm", '0.0.2'
-gem 'mongo', '<= 1.6.2' 
-gem 'bson', '~> 1.6.4' 
-gem 'bson_ext', '~> 1.6.4'
 gem 'actionpack'
 
 gem "jquery-rails"

@@ -20,10 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "json"
   s.add_dependency "multi_json"
   s.add_dependency "gcm", "0.0.2"
-  s.add_dependency "mongoid", ">= 2.4.12"
-  s.add_dependency 'mongo', '<= 1.6.2' 
-  s.add_dependency 'bson', '~> 1.6.4' 
-  s.add_dependency 'bson_ext', '~> 1.6.4'
+  s.add_dependency "mongoid", "~> 3.0.6"
   s.add_dependency "liquid"
 
   s.add_development_dependency "database_cleaner"
