@@ -11,57 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["jbozek@anypresence.com"]
   s.homepage    = "http://www.anypresence.com"
   s.summary     = "The most awesome push notification engine in the world. THE WORLD."
-  s.description =  <<-RUBY
-    {
-      "type": "ServiceInstance::RailsEngineGem",
-      "name": "Push Notifications",
-      "filename": "push_notification_extension",
-      "version": "0.0.1",
-      "description": "",
-      "mount_name": "PushNotificationExtension::Engine",
-      "mount_endpoint": "/push_notification_extension",
-      "model_configuration": {
-        "included_module": "AP::PushNotificationExtension::PushNotification",
-        "fire_method": "execute_push_notification",
-        "parameters": ["required_configuration"],
-        "lifecyle_hooks": {
-          "execute_push_notification": ["after_save", "after_create", "after_update", "after_destroy"]
-        },
-        "required_configuration": {
-          "gcm_api_key": {
-            "type": "String",
-            "description": "API key for Android GCM."
-          },
-          "apple_cert": {
-            "type": "File",
-            "description": "Apple certificate for push notification servers."
-          },
-          "apple_cert_password": {
-            "type": "String",
-            "description": "Apple certificate password."
-          }
-        },
-        "object_definition_level_configuration": {
-          "channel": {
-            "type": "String",
-            "description": "Channel to publish message to."
-          },
-          "badge": {
-            "type": "String",
-            "description": "Value to set on the badge."
-          },
-          "alert": {
-            "type": "String",
-            "description": "Value display in an alert."
-          },
-          "message_payload": {
-            "type": "String",
-            "description": "JSON object containing extra information you would like to pass to the device."
-          }
-        }
-      }
-    }
-RUBY
+  s.description = "Push notification integration for apps generated using AnyPresence's solution."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile"]
   s.test_files = Dir["test/**/*"]
@@ -77,8 +27,6 @@ RUBY
   s.add_dependency "liquid"
 
   s.add_development_dependency "database_cleaner"
-  #s.add_development_dependency "rspec"
-  #s.add_development_dependency "rspec-rails"
   s.add_development_dependency "factory_girl", "= 3.3.0"
-   s.add_development_dependency "ruby-debug19"
+  s.add_development_dependency "debugger"
 end
