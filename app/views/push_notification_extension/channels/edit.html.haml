@@ -1,0 +1,19 @@
+= stylesheet_link_tag 'admin'
+= javascript_include_tag 'admin'
+= csrf_meta_tags
+
+%h1 Channel #{@channel.name}
+%h1 Registered devices
+%table
+  %tbody
+    %tr 
+      %th type
+      %th token
+    - @devices.each do |device|
+      %tr
+        %td= device.type
+        %td= device.token
+
+%div#form
+  = render :partial => 'form'
+

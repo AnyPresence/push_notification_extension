@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "gcm", "0.0.2"
   s.add_dependency "mongoid", "~> 3.0.6"
   s.add_dependency "liquid"
+  s.add_dependency "simple_form"
 
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "factory_girl", "= 3.3.0"
