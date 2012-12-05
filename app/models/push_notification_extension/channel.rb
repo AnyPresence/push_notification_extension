@@ -24,8 +24,7 @@ module PushNotificationExtension
         ios_notifications << APNS::Notification.new(device.token, badge: badge, alert: alert, other: message_payload) if device.ios?
         android_device_tokens << device.token if device.android?
       end
-      #if Rails.env.production?
-      if Rails.env.development?
+      if Rails.env.production?
         hashed_message_payload = nil
         begin
           # Note that that app icons cannot be modified on the android side. This count will have to be displayed in 
