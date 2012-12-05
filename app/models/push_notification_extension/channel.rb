@@ -10,8 +10,11 @@ module PushNotificationExtension
     attr_accessible :name
 
     has_and_belongs_to_many :devices, :class_name => "PushNotificationExtension::Device"
+    
+    has_and_belongs_to_many :messages, :class_name => "PushNotificationExtension::Message"
 
     def publish(badge = 0, alert, message_payload)
+      debugger
       ios_notifications = []
       android_notifications = []
       android_device_tokens = []
@@ -20,7 +23,8 @@ module PushNotificationExtension
         ios_notifications << APNS::Notification.new(device.token, badge: badge, alert: alert, other: message_payload) if device.ios?
         android_device_tokens << device.token if device.android?
       end
-      if Rails.env.production?
+      #if Rails.env.production?
+      if Rails.env.development?
         hashed_message_payload = nil
         begin
           # Note that that app icons cannot be modified on the android side. This count will have to be displayed in 
@@ -39,6 +43,8 @@ module PushNotificationExtension
         end
         
         APNS.send_notifications(ios_notifications) if ios_notifications
+        debugger
+        self.messages << Message.new(alert: alert, badge: badge, message_payload: message_payload)
       end
     end
 
