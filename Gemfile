@@ -14,6 +14,7 @@ gem 'actionpack'
 gem "jquery-rails"
 gem 'mocha', :require => false
 gem 'shoulda'
+gem 'kaminari', '~> 0.14.1'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

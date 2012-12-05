@@ -26,10 +26,10 @@ module PushNotificationExtension
     
     def push
       @channel = ::PushNotificationExtension::Channel.find(params[:id])
+      @messages = @channel.messages.order_by(:updated_at.desc).page(params[:page])
     end
     
     def manual_push
-      debugger
       @channel = ::PushNotificationExtension::Channel.find(params[:id])
       @channel.publish(params[:badge], params[:alert], params[:message])
       

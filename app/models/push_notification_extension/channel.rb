@@ -12,10 +12,9 @@ module PushNotificationExtension
 
     has_and_belongs_to_many :devices, :class_name => "PushNotificationExtension::Device"
     
-    has_and_belongs_to_many :messages, :class_name => "PushNotificationExtension::Message"
+    has_many :messages, :class_name => "PushNotificationExtension::Message", :inverse_of => :channel
 
     def publish(badge = 0, alert, message_payload)
-      debugger
       ios_notifications = []
       android_notifications = []
       android_device_tokens = []
@@ -36,14 +35,14 @@ module PushNotificationExtension
           Rails.logger.error "Unable to parse the message payload for android: " + $!.message
           Rails.logger.error $!.backtrace.join("\n")
         end  
-        debugger
+        
         unless hashed_message_payload.nil?
           gcm = ::GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]) if AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]
           gcm.send_notification(android_device_tokens, data: hashed_message_payload) if android_device_tokens
         end
         
         APNS.send_notifications(ios_notifications) if ios_notifications
-        debugger
+        
         self.messages << Message.new(alert: alert, badge: badge, message_payload: message_payload)
       end
     end

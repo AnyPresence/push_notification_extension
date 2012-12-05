@@ -1,0 +1,15 @@
+= paginate @messages
+
+%table
+  %tbody
+    %tr 
+      %th time
+      %th badge
+      %th alert
+      %th payload
+      - @messages.each do |message|
+        %tr
+          %td= message.updated_at
+          %td= message.badge
+          %td= message.alert
+          %td= message.message_payload
