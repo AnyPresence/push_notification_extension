@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2.8"
   s.add_dependency "json"
   s.add_dependency "multi_json"
-  s.add_dependency "gcm", "0.0.2"
+  s.add_dependency "gcm", "~> 0.0.2"
   s.add_dependency "mongoid", "~> 3.0.6"
   s.add_dependency "liquid"
   s.add_dependency "simple_form"
