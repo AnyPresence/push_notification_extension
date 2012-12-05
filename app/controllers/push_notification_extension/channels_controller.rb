@@ -24,5 +24,19 @@ module PushNotificationExtension
       end
     end
     
+    def push
+      @channel = ::PushNotificationExtension::Channel.find(params[:id])
+    end
+    
+    def manual_push
+      debugger
+      @channel = ::PushNotificationExtension::Channel.find(params[:id])
+      @channel.publish(params[:badge], params[:alert], params[:message])
+      
+      respond_to do |format|
+        format.html { redirect_to settings_path }
+      end
+    end
+    
   end
 end

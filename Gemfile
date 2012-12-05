@@ -8,7 +8,7 @@ gemspec
 #gem 'rspec-rails'
 gem 'mongoid', '~> 3.0.6'
 gem "apns", '1.0.0', :git => 'git://github.com/jpoz/APNS.git'
-gem "gcm", '0.0.2'
+gem "gcm", '~> 0.0.2'
 gem 'actionpack'
 
 gem "jquery-rails"

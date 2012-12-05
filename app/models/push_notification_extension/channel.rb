@@ -1,3 +1,4 @@
+require 'gcm'
 module PushNotificationExtension
   class Channel
     include ActiveModel::MassAssignmentSecurity
@@ -36,9 +37,9 @@ module PushNotificationExtension
           Rails.logger.error "Unable to parse the message payload for android: " + $!.message
           Rails.logger.error $!.backtrace.join("\n")
         end  
-        
+        debugger
         unless hashed_message_payload.nil?
-          gcm = GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]) if AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]
+          gcm = ::GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]) if AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]
           gcm.send_notification(android_device_tokens, data: hashed_message_payload) if android_device_tokens
         end
         

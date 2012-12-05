@@ -1,0 +1,12 @@
+%h1 Push
+= simple_form_for(@channel, :url => manual_push_channel_path) do |f|
+  = f.error :base
+  = f.error_notification
+  = f.label :badge
+  = text_field_tag :badge
+  = f.label :alert
+  = text_field_tag :alert
+  = f.label :message
+  = text_field_tag :message
+  %br
+  = f.button :submit, "Push"
