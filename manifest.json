@@ -1,0 +1,49 @@
+{
+  "type": "ServiceInstance::RailsEngineGem",
+  "name": "Push Notifications",
+  "filename": "push_notification_extension",
+  "version": "0.0.1",
+  "description": "",
+  "mount_name": "PushNotificationExtension::Engine",
+  "mount_endpoint": "/push_notification_extension",
+  "model_configuration": {
+    "included_module": "AP::PushNotificationExtension::PushNotification",
+    "fire_method": "execute_push_notification",
+    "parameters": ["required_configuration"],
+    "lifecyle_hooks": {
+      "execute_push_notification": ["after_save", "after_create", "after_update", "after_destroy"]
+    },
+    "required_configuration": {
+      "gcm_api_key": {
+        "type": "String",
+        "description": "API key for Android GCM."
+      },
+      "apple_cert": {
+        "type": "File",
+        "description": "Apple certificate for push notification servers."
+      },
+      "apple_cert_password": {
+        "type": "String",
+        "description": "Apple certificate password."
+      }
+    },
+    "object_definition_level_configuration": {
+      "channel": {
+        "type": "String",
+        "description": "Channel to publish message to."
+      },
+      "badge": {
+        "type": "String",
+        "description": "Value to set on the badge."
+      },
+      "alert": {
+        "type": "String",
+        "description": "Value display in an alert."
+      },
+      "message_payload": {
+        "type": "String",
+        "description": "JSON object containing extra information you would like to pass to the device."
+      }
+    }
+  }
+}

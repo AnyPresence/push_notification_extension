@@ -29,9 +29,15 @@ module AP
         end
         raise "No push services configured!" unless cert_valid || @@config[:gcm_api_key]
       end
+      
       def self.config
         @@config
       end
+      
+      def self.json_config
+        @@json ||= ActiveSupport::JSON.decode(File.read("#{File.dirname(__FILE__)}/../../../manifest.json"))
+      end
+      
       def execute_push_notification(object, options = {})
         options = HashWithIndifferentAccess.new(options)
         channel = ::PushNotificationExtension::Channel.where(name: options[:channel]).first || ::PushNotificationExtension::Channel.create(name: options[:channel])

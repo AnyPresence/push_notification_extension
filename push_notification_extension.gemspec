@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "The most awesome push notification engine in the world. THE WORLD."
   s.description = "Push notification integration for apps generated using AnyPresence's solution."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["Rakefile"] + ["manifest.json"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.8"

@@ -10,7 +10,7 @@ PATH
     push_notification_extension (0.0.1)
       gcm (~> 0.0.2)
       json
-      kaminari
+      kaminari (~> 0.14.1)
       liquid
       mongoid (~> 3.0.6)
       multi_json
@@ -151,6 +151,7 @@ DEPENDENCIES
   factory_girl (= 3.3.0)
   gcm (~> 0.0.2)
   jquery-rails
+  kaminari (~> 0.14.1)
   mocha
   mongoid (~> 3.0.6)
   push_notification_extension!
