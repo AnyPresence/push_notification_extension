@@ -1,0 +1,134 @@
+@import "compass"
+
+$base-light-color: #DDD
+$base-dark-color: #5B6167
+$link-color: #f38c29
+$button-color: #63ab63
+
+html
+  background-color: #FFF
+
+.header
+  text-align: right
+  padding: 10px
+  background-color: $base-dark-color
+  a
+    color: $link-color
+
+.container
+  padding-bottom: rhythm(2)
+  font-size: 123.1%
+  font-family: Helvetica, Arial, sans-serif
+  > a
+    display: block
+    margin-left: 100px
+
+.home
+  padding: rhythm(0.5) 100px
+  +adjust-font-size-to(11px)
+  a
+    text-decoration: none
+    color: lighten($base-dark-color, 25%)
+    &:hover
+      text-decoration: underline
+
+a
+  color: $link-color
+
+h1
+  padding: 0 100px
+  border-bottom: 2px solid #CCC
+  font-weight: bold
+  +adjust-font-size-to(32px, 1)
+  +adjust-leading-to(3, 32px)
+  color: $base-dark-color
+  background-color: #DEDEDE
+  +background(linear-gradient(top center, #F0F0F0, #E3E3E3))
+
+table
+  width: 80%
+  margin: rhythm() 100px
+  +adjust-font-size-to(12px, 1)
+tr
+  border-bottom: 1px solid $base-light-color
+th
+  padding: rhythm(0.15) rhythm(0.5)
+  border-top: 1px solid $base-light-color
+  border-left: 1px solid $base-light-color
+  border-bottom: 2px solid #CCC
+  font-weight: bold
+  color: $base-dark-color
+  +background(linear-gradient(top center, #EEE, #DDD))
+  &:first-child
+    border-left: 0
+td
+  padding: 0 rhythm(0.5)
+  +adjust-leading-to(2, 12px)
+  a
+    display: block
+
+.new-object
+  text-decoration: none
+  &:before
+    content: "+ "
+  &:hover
+    text-decoration: underline
+
+form
+  +legacy-pie-clearfix
+  max-width: 800px
+  margin: rhythm() 100px
+  padding: rhythm()
+  +border-radius(2px)
+  border: 1px solid $base-light-color
+  background-color: #F6F6F6
+.input
+  +legacy-pie-clearfix
+  float: left
+  width: 45%
+  padding: rhythm(0.5) 0
+label
+  display: block
+  +adjust-font-size-to(12px)
+  text-transform: uppercase
+  color: $base-dark-color
+[type="text"], [type="url"], [type="email"], [type="number"], [type="password"], [type="tel"], select, textarea, [type="file"]
+  +adjust-font-size-to($base-font-size)
+  +rhythm-borders(1px, 0.25)
+  +border-radius(3px)
+  border: 1px solid $base-light-color
+  color: #222
+  background-color: #fcfcfc
+  padding: 7px 10px
+  clear: both
+  max-width: 90%
+  height: rhythm()
+  border-color: $base-light-color
+.form-actions
+  clear: both
+  padding: rhythm(0.5) 0
+button, [type="submit"]
+  cursor: pointer
+  padding: rhythm(0.25) rhythm()
+  +border-radius(20px)
+  border: 2px solid #FFF
+  +adjust-font-size-to(14px)
+  color: #FFF
+  background-color: $base-dark-color
+  +background(linear-gradient(top center, lighten($button-color, 15%), $button-color))
+  &:hover
+    +background(linear-gradient(top center, lighten($button-color, 25%), $button-color))
+  &:active
+    +background(linear-gradient(top center, darken($button-color, 5%), $button-color))
+
+.notice
+  max-width: 400px
+  margin: rhythm(3) auto
+  padding: rhythm()
+  +border-radius(2px)
+  border: 1px solid $base-light-color
+  background-color: #F6F6F6
+  p
+    margin-bottom: rhythm()
+  a
+    padding-right: rhythm()

@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title PushNotificationExtension
+    = stylesheet_link_tag    "push_notification_extension/application", :media => "all"
+    = javascript_include_tag "push_notification_extension/application"
+    = stylesheet_link_tag 'admin'
+    = javascript_include_tag 'admin'
+    = csrf_meta_tags
+  %body
+    = yield

@@ -5,11 +5,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
 require "mocha"
-
 require 'database_cleaner'
-
-require 'push_notification_extension'
-
 require 'factory_girl'
 
 FactoryGirl.find_definitions
