@@ -7,7 +7,7 @@ GIT
 PATH
   remote: .
   specs:
-    push_notification_extension (0.0.1)
+    push_notification_extension (0.0.3)
       gcm (~> 0.0.2)
       json
       kaminari (~> 0.14.1)
