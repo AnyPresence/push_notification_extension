@@ -6,13 +6,16 @@
       %tr 
         %th name
         %th devices
-        %th action
+        %th{colspan: '2'} action
         - @channels.each do |channel|
           %tr
             %td= channel.name
             %td
               %p= channel.devices.map {|m| "#{m.token.slice(0,20)}..." }.join("\n")
-            %td= raw "#{link_to 'Edit', edit_channel_path(channel)} #{link_to 'Push', push_channel_path(channel)}" 
+            %td 
+              = link_to 'Edit', edit_channel_path(channel) 
+            %td
+              = link_to 'Push', push_channel_path(channel) 
               
     
   = link_to "Add channel", new_channel_path
