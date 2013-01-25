@@ -41,7 +41,7 @@ module PushNotificationExtension
           gcm.send_notification(android_device_tokens, data: hashed_message_payload) if android_device_tokens
         end
         
-        APNS.send_notifications(ios_notifications) if ios_notifications
+        APNS.send_notifications(ios_notifications) if !ios_notifications.blank?
         
         self.messages << Message.new(alert: alert, badge: badge, message_payload: message_payload)
       end
