@@ -27,7 +27,7 @@ module PushNotificationExtension
     
     def update
       @channel = ::PushNotificationExtension::Channel.find(params[:id])
-      devices_to_add = params[:device_ids]
+      devices_to_add = params[:device_ids] || []
       devices_to_add.each do |device|
         @channel.devices << ::PushNotificationExtension::Device.find(device)
       end

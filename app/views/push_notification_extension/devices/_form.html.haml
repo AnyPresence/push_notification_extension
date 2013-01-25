@@ -1,0 +1,7 @@
+
+= simple_form_for(@device) do |f|
+  = f.error :base
+  = f.error_notification
+  = f.input :token
+  = f.input :type, :collection => PushNotificationExtension::Device::TYPES
+  = f.button :submit

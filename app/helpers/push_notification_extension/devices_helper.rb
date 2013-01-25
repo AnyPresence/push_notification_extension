@@ -1,3 +1,4 @@
 module PushNotificationExtension
-  VERSION = "0.0.4"
+  module DevicesHelper
+  end
 end

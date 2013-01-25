@@ -11,5 +11,7 @@ PushNotificationExtension::Engine.routes.draw do
     end
   end
   
+  resources :devices
+  
   root :to => "settings#index"
 end
