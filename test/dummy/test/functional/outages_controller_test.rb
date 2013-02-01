@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OutagesControllerTest < ActionController::TestCase
+class Api::V1::OutagesControllerTest < ActionController::TestCase
   
   setup do
     @outage = FactoryGirl.create(:outage)
@@ -18,11 +18,9 @@ class OutagesControllerTest < ActionController::TestCase
   end
 
   test "should create outage" do
-    assert_difference('Outage.count') do
+    assert_difference('::V1::Outage.count') do
       post :create, outage: { title: @outage.title }
     end
-
-    assert_redirected_to outage_path(assigns(:outage))
   end
 
   test "should show outage" do
@@ -30,21 +28,21 @@ class OutagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @outage
-    assert_response :success
-  end
+  # test "should get edit" do
+  #   get :edit, id: @outage
+  #   assert_response :success
+  # end
 
   test "should update outage" do
     put :update, id: @outage, outage: { title: @outage.title }
-    assert_redirected_to outage_path(assigns(:outage))
+    #assert_redirected_to api_v1_outage_path(assigns(:outage))
   end
 
   test "should destroy outage" do
-    assert_difference('Outage.count', -1) do
+    assert_difference('::V1::Outage.count', -1) do
       delete :destroy, id: @outage
     end
 
-    assert_redirected_to outages_path
+    assert_redirected_to api_v1_outages_path
   end
 end

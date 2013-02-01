@@ -1,4 +1,4 @@
-<%= form_for(@outage) do |f| %>
+<%= form_for(@outage, :url => api_v1_outages_path) do |f| %>
   <% if @outage.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@outage.errors.count, "error") %> prohibited this outage from being saved:</h2>

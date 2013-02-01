@@ -3,14 +3,22 @@ module AP
     module PushNotification
       @@config = Hash.new
       def self.config_account(config={})
-        if config.empty?
-          raise "Nothing to configure!"
-        end
         config = HashWithIndifferentAccess.new(config)
-        @@config[:gcm_api_key] = config[:gcm_api_key]
+        
+        if ENV['AP_PUSH_NOTIFICATIONS_GCM_API_KEY'].blank?
+          @@config[:gcm_api_key] = config[:gcm_api_key]
+        else
+          @@config[:gcm_api_key] = ENV['AP_PUSH_NOTIFICATIONS_GCM_API_KEY']
+        end
+            
         @@config[:apple_cert] = config[:apple_cert]
-        @@config[:apple_cert_password] = config[:apple_cert_password]
-
+        
+        if ENV['AP_PUSH_NOTIFICATIONS_APPLE_CERT_PASSWORD'].blank?
+          @@config[:apple_cert_password] = config[:apple_cert_password]
+        else
+          @@config[:apple_cert_password] = ENV['AP_PUSH_NOTIFICATIONS_APPLE_CERT_PASSWORD']
+        end
+        
         cert_valid = false
         if @@config[:apple_cert] && File.file?("#{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}")
 
