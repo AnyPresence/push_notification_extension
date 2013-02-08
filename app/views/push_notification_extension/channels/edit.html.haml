@@ -1,7 +1,9 @@
+= link_to "Back to push notification settings", settings_path
 
-%h1 Channel #{@channel.name}
-%h1 Registered devices
-%table
+.text-info
+  %h3 Channel: #{@channel.name}
+  %h3 Registered devices
+%table.table.table-striped
   %tbody
     %tr 
       %th type

@@ -1,3 +1,5 @@
+require_dependency "push_notification_extension/application_controller"
+
 module PushNotificationExtension
   class PubSubController < ApplicationController
     before_filter :detect_mobile_os, only: [ :subscribe, :unsubscribe ]

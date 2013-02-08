@@ -1,7 +1,9 @@
-
-= simple_form_for(@device) do |f|
-  = f.error :base
-  = f.error_notification
-  = f.input :token
-  = f.input :type, :collection => PushNotificationExtension::Device::TYPES
-  = f.button :submit
+  
+= simple_form_for(@device, :html => {class: 'form-horizontal'}) do |f|
+  .form-inputs
+    = f.error :base
+    = f.error_notification
+    = f.input :type, :collection => PushNotificationExtension::Device::TYPES
+    = f.input :token
+  .form-actions
+    = f.button :submit, {class: 'btn btn-primary'}

@@ -1,5 +1,3 @@
-module PushNotificationExtension
-  class ApplicationController < ActionController::Base
-  end
+class PushNotificationExtension::ApplicationController < ApplicationController
+  layout "layouts/admin"
 end
-

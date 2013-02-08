@@ -1,5 +1,6 @@
-= simple_form_for(@channel) do |f|
-  = f.input :name
-  %br
-  = f.submit
+= simple_form_for(@channel, :html => {class: 'form-horizontal'}) do |f|
+  .form-inputs
+    = f.input :name
+  .form-actions
+    = f.button :submit, {class: 'btn btn-primary'}
 

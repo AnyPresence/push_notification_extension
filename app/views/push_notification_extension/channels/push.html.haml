@@ -1,6 +1,9 @@
+= link_to "Back to push notification settings", settings_path
 
-%h1 Channel #{@channel.name}
+.text-info
+  %h3 Channel: #{@channel.name}
 = render :partial => 'push_form'
 
-%h1 Sent pushes
+.text-info
+  %h3 Sent pushes
 = render :partial => 'messages'
