@@ -1,6 +1,4 @@
-.text-info
-  %h3 Push
-= simple_form_for(@channel, :url => manual_push_channel_path) do |f|
+= simple_form_for(@channel, :url => manual_push_channel_path, class: 'form-horizontal') do |f|
   .form-inputs
     = f.error :base
     = f.error_notification
@@ -12,3 +10,4 @@
     = text_field_tag :message
   .form-actions 
     = f.button :submit, "Push", {class: 'btn btn-primary'}
+    = link_to 'Cancel', settings_path, class: 'btn'

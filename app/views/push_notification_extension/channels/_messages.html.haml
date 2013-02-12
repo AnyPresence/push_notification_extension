@@ -1,15 +1,16 @@
 = paginate @messages
 
 %table.table.table-striped
-  %tbody
+  %thead
     %tr 
-      %th time
-      %th badge
-      %th alert
-      %th payload
-      - @messages.each do |message|
-        %tr
-          %td= message.updated_at
-          %td= message.badge
-          %td= message.alert
-          %td= message.message_payload
+      %th Time
+      %th Badge
+      %th Alert
+      %th Payload
+  %tbody
+    - @messages.each do |message|
+      %tr
+        %td= message.updated_at
+        %td= message.badge
+        %td= message.alert
+        %td= message.message_payload

@@ -1,20 +1,16 @@
-.text-info
-  %h3 Available devices to add
-
 - if !@available_devices.blank?
   = simple_form_for(@channel) do |f|
     %table.table.table-striped
-      %tbody
+      %thead
         %tr 
-          %th type
-          %th token
-          %th select
+          %th Type
+          %th Token
+          %th.ap-text-center Check to Add
+      %tbody
         - @available_devices.each do |device|
           %tr
             %td= device.type
-            %td= device.token
-            %td= check_box_tag "device_ids[]", device.id
+            %td.ap-mono= device.token
+            %td.ap-text-center= check_box_tag "device_ids[]", device.id
 
-    = f.button :submit
-- else
-  %p None available...
+    = f.button :submit, class: 'btn-primary'

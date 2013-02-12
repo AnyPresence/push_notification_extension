@@ -1,38 +1,67 @@
-.text-info
-  %h3 Push Notification Extension Settings
-.text-info
-  %h3 Channels
-%table.table.table-striped
-  %tbody
-    %tr 
-      %th name
-      %th devices
-      %th{colspan: '2'} action
-      - @channels.each do |channel|
-        %tr
-          %td= channel.name
-          %td
-            %p= channel.devices.map {|m| "#{m.token.slice(0,20)}..." }.join("\n")
-          %td 
-            = link_to 'Edit', edit_channel_path(channel) 
-          %td
-            = link_to 'Push', push_channel_path(channel) 
-            
+%ul.breadcrumb
+  %li
+    = link_to 'Home', main_app.admin_root_path
+    %span.divider /
+  %li
+    = link_to 'Extensions', main_app.admin_extensions_path
+    %span.divider /
+  %li.active Push Notifications
+
+.alert.alert-info
+  %h1 Push Notifications
+  %p Manage push notification settings.
+
+.row-fluid
+  .span6
+    .page-header
+      %h4 Channels
+      = link_to new_channel_path, class: 'btn btn-mini btn-primary' do
+        %i.icon-plus
+        Add channel
+    - if @channels.size == 0
+      .alert No channels yet.
+    - else
+      %table.table.table-striped
+        %thead
+          %tr 
+            %th Name
+            %th Devices
+            %th
+        %tbody
+          - @channels.each do |channel|
+            %tr
+              %td= link_to channel.name, edit_channel_path(channel) 
+              %td.ap-mono= channel.devices.map {|m| "#{m.token.slice(0,20)}..." }.join("\n")
+              %td
+                .btn-group.pull-right
+                  = link_to edit_channel_path(channel), class: 'btn btn-mini' do
+                    %i.icon-edit
+                    Edit
+                  = link_to push_channel_path(channel), class: 'btn btn-mini' do
+                    %i.icon-cloud-upload
+                    Push
   
-= link_to "Add channel", new_channel_path
-.text-info
-  %h3 Devices
-%table.table.table-striped
-  %tbody
-    %tr 
-      %th type
-      %th token
-      %th action
-    - @devices.each do |device|
-      %tr
-        %td= device.type
-        %td= "#{device.token.slice(0,20)}..."
-        %td= link_to 'Edit', edit_device_path(device)
-= link_to "Add device", new_device_path
-
-
+  .span6
+    .page-header
+      %h4 Devices
+      = link_to new_device_path, class: 'btn btn-mini btn-primary' do
+        %i.icon-plus
+        Add device
+    - if @devices.size == 0
+      .alert No devices yet.
+    - else
+      %table.table.table-striped
+        %thead
+          %tr 
+            %th Type
+            %th Token
+            %th
+        %tbody
+          - @devices.each do |device|
+            %tr
+              %td= device.type
+              %td.ap-mono= "#{device.token.slice(0,20)}..."
+              %td
+                = link_to edit_device_path(device), class: 'btn btn-mini pull-right' do
+                  %i.icon-edit
+                  Edit

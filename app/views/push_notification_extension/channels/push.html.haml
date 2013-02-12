@@ -1,9 +1,25 @@
-= link_to "Back to push notification settings", settings_path
+%ul.breadcrumb
+  %li
+    = link_to 'Home', main_app.admin_root_path
+    %span.divider /
+  %li
+    = link_to 'Extensions', main_app.admin_extensions_path
+    %span.divider /
+  %li
+    = link_to 'Push Notifications', settings_path
+    %span.divider /
+  %li
+    Push
+    = "(#{@channel.name})"
 
-.text-info
-  %h3 Channel: #{@channel.name}
-= render :partial => 'push_form'
+.row-fluid
+  .span6
+    .page-header
+      %h4 Channel: #{@channel.name}
+    = render :partial => 'push_form'
 
-.text-info
-  %h3 Sent pushes
-= render :partial => 'messages'
+.row-fluid
+  .span6
+    .page-header
+      %h4 Previous Pushes
+    = render :partial => 'messages'

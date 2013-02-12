@@ -1,18 +1,40 @@
-= link_to "Back to push notification settings", settings_path
+%ul.breadcrumb
+  %li
+    = link_to 'Home', main_app.admin_root_path
+    %span.divider /
+  %li
+    = link_to 'Extensions', main_app.admin_extensions_path
+    %span.divider /
+  %li
+    = link_to 'Push Notifications', settings_path
+    %span.divider /
+  %li= @channel.name
 
-.text-info
-  %h3 Channel: #{@channel.name}
-  %h3 Registered devices
-%table.table.table-striped
-  %tbody
-    %tr 
-      %th type
-      %th token
-    - @devices.each do |device|
-      %tr
-        %td= device.type
-        %td= device.token
+.page-header
+  %h1= @channel.name
 
-%div#form
-  = render :partial => 'form'
+.row-fluid
+  .span6
+    .page-header
+      %h4 Registered Devices
+    - if @devices.size == 0
+      .alert No devices yet.
+    - else
+      %table.table.table-striped
+        %thead
+          %tr 
+            %th Type
+            %th Token
+        %tbody
+          - @devices.each do |device|
+            %tr
+              %td= device.type
+              %td.ap-mono= device.token
 
+  .span6
+    .page-header
+      %h4 Add a Device to this Channel
+    - if !@available_devices.blank?
+      = render :partial => 'form'
+    - else
+      .alert No devices available.
