@@ -24,13 +24,12 @@ module PushNotificationExtension
         android_device_tokens << device.token if device.android?
       end
       if Rails.env.production?
-        hashed_message_payload = nil
+        hashed_message_payload = Hash.new
         begin
           # Note that that app icons cannot be modified on the android side. This count will have to be displayed in 
           # a widget or from the notification system.
-          json_rep = "{\"data\":\"#{message_payload}\",\"badge\":#{badge}}"
-          json_rep = JSON.parse(json_rep).to_json
-          hashed_message_payload = ActiveSupport::JSON.decode(json_rep)
+          hashed_message_payload["data"] = message_payload
+          hashed_message_payload["badge"] = badge
         rescue
           Rails.logger.error "Unable to parse the message payload for android: " + $!.message
           Rails.logger.error $!.backtrace.join("\n")
