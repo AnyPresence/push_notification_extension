@@ -49,7 +49,7 @@ module AP
       def execute_push_notification(object, options = {})
         options = HashWithIndifferentAccess.new(options)
         channel = ::PushNotificationExtension::Channel.where(name: options[:channel]).first || ::PushNotificationExtension::Channel.create(name: options[:channel])
-        channel.publish(options[:badge], options[:alert], options[:message_payload])
+        channel.publish(options[:badge], options[:alert], options[:sound], options[:message_payload])
       end
     end
   end

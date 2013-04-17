@@ -7,7 +7,7 @@ GIT
 PATH
   remote: .
   specs:
-    push_notification_extension (0.0.7)
+    push_notification_extension (0.0.8)
       gcm (~> 0.0.2)
       json
       kaminari (~> 0.14.1)
@@ -65,13 +65,12 @@ GEM
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
     database_cleaner (0.8.0)
-    debugger (1.2.1)
+    debugger (1.5.0)
       columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.4)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.4)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.0)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -196,7 +195,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails (= 1.0.3)
   database_cleaner
-  debugger
+  debugger (= 1.5.0)
   factory_girl (= 3.3.0)
   gcm (~> 0.0.2)
   haml (= 3.1.7)
