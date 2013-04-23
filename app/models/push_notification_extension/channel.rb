@@ -19,11 +19,22 @@ module PushNotificationExtension
       android_notifications = []
       android_device_tokens = []
       push_sound = sound.blank? ? "default" : sound
+      
+      ios_message_payload = nil
+      if message_payload.is_a?(String)        
+        begin
+          ios_message_payload = JSON.parse(message_payload)
+        rescue
+          ios_message_payload = {data: message_payload}
+        end
+      end
+      
       devices.each do |device|
         Rails.logger.info "Sending message #{message_payload}, with badge number #{badge}, to device #{device.token} of type #{device.type} for channel #{name}"
-        ios_notifications << APNS::Notification.new(device.token, badge: badge, alert: alert, sound: push_sound, other: message_payload) if device.ios?
+        ios_notifications << APNS::Notification.new(device.token, badge: badge, alert: alert, sound: push_sound, other: ios_message_payload) if device.ios?
         android_device_tokens << device.token if device.android?
       end
+      
       if Rails.env.production?
         hashed_message_payload = Hash.new
         begin

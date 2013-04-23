@@ -12,6 +12,9 @@ FactoryGirl.find_definitions
 
 Rails.backtrace_cleaner.remove_silencers!
 
+DatabaseCleaner[:mongoid].clean_with(:truncation)
+
+
 # Load support files
 #Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
