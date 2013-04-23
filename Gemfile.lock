@@ -104,7 +104,7 @@ GEM
       treetop (~> 1.4.8)
     metaclass (0.0.1)
     mime-types (1.19)
-    mocha (0.12.3)
+    mocha (0.13.3)
       metaclass (~> 0.0.1)
     mongoid (3.0.9)
       activemodel (~> 3.1)
@@ -202,7 +202,7 @@ DEPENDENCIES
   jquery-rails
   jquery_mobile_rails (= 1.2.0)
   kaminari (~> 0.14.1)
-  mocha
+  mocha (~> 0.13.3)
   mongoid (~> 3.0.6)
   push_notification_extension!
   redis

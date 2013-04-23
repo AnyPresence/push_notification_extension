@@ -21,7 +21,7 @@ gem 'actionpack'
 gem 'kaminari', '~> 0.14.1'
 
 group :test do
-  gem 'mocha', :require => false
+  gem 'mocha', "~> 0.13.3", require: false
   gem "shoulda"
 end
 
