@@ -46,10 +46,23 @@ module PushNotificationExtension
     
     def manual_push
       @channel = ::PushNotificationExtension::Channel.find(params[:id])
-      @channel.publish(params[:badge], params[:alert], params[:sound], params[:message])
+      
+      status = false
+      begin
+        @channel.publish(params[:badge], params[:alert], params[:sound], params[:message])
+        status = true
+      rescue
+        Rails.logger.error("Unable to send push notification: #{$!.message}")
+        @channel.errors.add(:base, "Unable to send push notification at this time.")
+      end
       
       respond_to do |format|
-        format.html { redirect_to settings_path }
+        if status
+          format.html { redirect_to settings_path, notice: "Successfully sent push notification." }
+        else
+          @messages = @channel.messages.order_by(:updated_at.desc).page(params[:page])
+          format.html { render action: "push"}
+        end
       end
     end
     
