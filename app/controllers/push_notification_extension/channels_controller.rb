@@ -46,7 +46,7 @@ module PushNotificationExtension
     
     def manual_push
       @channel = ::PushNotificationExtension::Channel.find(params[:id])
-      @channel.publish(params[:badge], params[:alert], params[:message])
+      @channel.publish(params[:badge], params[:alert], params[:sound], params[:message])
       
       respond_to do |format|
         format.html { redirect_to settings_path }
