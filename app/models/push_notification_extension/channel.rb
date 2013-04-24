@@ -25,8 +25,11 @@ module PushNotificationExtension
         begin
           ios_message_payload = JSON.parse(message_payload)
         rescue
+          Rails.logger.error "Not able to parse message payload: #{$!.message}"
           ios_message_payload = {data: message_payload}
         end
+      else
+        ios_message_payload = message_payload
       end
       
       devices.each do |device|
