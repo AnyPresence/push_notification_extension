@@ -41,7 +41,7 @@ module PushNotificationExtension
     
     def push
       @channel = ::PushNotificationExtension::Channel.find(params[:id])
-      @messages = @channel.messages.order_by(:updated_at.desc).page(params[:page])
+      @messages = @channel.messages.order_by("updated_at DESC").page(params[:page])
     end
     
     def manual_push
@@ -60,7 +60,7 @@ module PushNotificationExtension
         if status
           format.html { redirect_to settings_path, notice: "Successfully sent push notification." }
         else
-          @messages = @channel.messages.order_by(:updated_at.desc).page(params[:page])
+          @messages = @channel.messages.order_by("updated_at DESC").page(params[:page])
           format.html { render action: "push"}
         end
       end

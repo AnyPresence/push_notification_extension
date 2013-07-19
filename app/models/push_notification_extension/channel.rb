@@ -24,7 +24,7 @@ module PushNotificationExtension
         begin
           ios_message_payload = JSON.parse(message_payload)
         rescue
-          Rails.logger.error "Not able to parse message payload: #{$!.message}"
+          Rails.logger.info "Not able to parse message payload: #{$!.message}. Sending the payload as just {data: <message_payload>}."
           ios_message_payload = {data: message_payload}
         end
       else
@@ -65,6 +65,8 @@ module PushNotificationExtension
         APNS.send_notifications(ios_notifications) if !ios_notifications.blank?
         
         self.messages << Message.new(alert: alert, badge: badge, message_payload: message_payload)
+      else
+        Rails.logger.info "Notifications will only be sent out for a production environment."
       end
     end
 
