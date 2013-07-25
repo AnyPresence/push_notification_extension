@@ -15,7 +15,7 @@ module PushNotificationExtension
     has_many :messages, :class_name => "PushNotificationExtension::Message", :inverse_of => :channel
 
     def publish(badge = 0, alert, sound, message_payload)
-      ios_notifications = []
+      ios_notifications     = []
       android_notifications = []
       android_device_tokens = []
       
@@ -57,8 +57,13 @@ module PushNotificationExtension
         
         unless hashed_message_payload.nil?
           if AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]
-            gcm = ::GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key]) 
-            gcm.send_notification(android_device_tokens, data: hashed_message_payload) if android_device_tokens
+            gcm = ::GCM.new(AP::PushNotificationExtension::PushNotification.config[:gcm_api_key])
+            if android_device_tokens
+              gcm_result = gcm.send_notification(android_device_tokens, data: hashed_message_payload)
+              Rails.logger.info "Channel #{self.name}: GCM push status: #{gcm_result}"
+            else
+              Rails.logger.info "Channel #{self.name}: There are no device tokens available for GCM."
+            end
           end
         end
         
