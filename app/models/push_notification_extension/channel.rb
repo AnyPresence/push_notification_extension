@@ -67,7 +67,9 @@ module PushNotificationExtension
           end
         end
         
-        APNS.send_notifications(ios_notifications) if !ios_notifications.blank?
+        ios_notifications.each do |ios_notification|
+          APNS.send_notifications([ios_notification])
+        end
         
         self.messages << Message.new(alert: alert, badge: badge, message_payload: message_payload)
       else
