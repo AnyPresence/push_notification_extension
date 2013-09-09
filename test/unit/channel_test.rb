@@ -21,7 +21,7 @@ class ChannelTest < ActiveSupport::TestCase
     message_payload = <<-TEXT
     {"data": "stuff"}
     TEXT
-    
+
     device_ios = FactoryGirl.create(:device_ios)
     
     @channel.devices << device_ios

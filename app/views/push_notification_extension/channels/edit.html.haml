@@ -29,7 +29,7 @@
           - @devices.each do |device|
             %tr
               %td= device.type
-              %td.ap-mono= device.token
+              %td.ap-mono= "#{shorten_device_token(device.token)}"
 
   .span6
     .page-header
