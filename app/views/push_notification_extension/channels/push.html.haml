@@ -1,25 +1,21 @@
 %ul.breadcrumb
   %li
     = link_to 'Home', main_app.admin_root_path
-    %span.divider /
+    
   %li
     = link_to 'Extensions', main_app.admin_extensions_path
-    %span.divider /
+    
   %li
     = link_to 'Push Notifications', settings_path
-    %span.divider /
+    
   %li
     Push
     = "(#{@channel.name})"
 
-.row-fluid
-  .span6
-    .page-header
-      %h4 Channel: #{@channel.name}
+.row
+  .col-md-6
+    %h4 Channel: #{@channel.name}
     = render :partial => 'push_form'
-
-.row-fluid
-  .span6
-    .page-header
-      %h4 Previous Pushes
+  .col-md-6
+    %h4 Previous Pushes
     = render :partial => 'messages'

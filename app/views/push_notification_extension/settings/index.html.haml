@@ -1,13 +1,13 @@
 %ul.breadcrumb
   %li
     = link_to 'Home', main_app.admin_root_path
-    %span.divider /
+    
   %li
     = link_to 'Extensions', main_app.admin_extensions_path
-    %span.divider /
+    
   %li.active Push Notifications
 
-.alert.alert-info
+.page-header
   %h1 Push Notifications
   %p Manage push notification settings.
   
@@ -15,13 +15,12 @@
   .alert.alert-info
     %p= notice
 
-.row-fluid
-  .span6
-    .page-header
-      %h4 Channels
-      = link_to new_channel_path, class: 'btn btn-mini btn-primary' do
-        %i.icon-plus
-        Add channel
+.row
+  .col-md-6
+    %h4 Channels
+    = link_to new_channel_path, class: 'btn btn-xs btn-primary' do
+      %i.icon-plus
+      Add channel
     - if @channels.size == 0
       .alert No channels yet.
     - else
@@ -38,19 +37,18 @@
               %td.ap-mono= channel.devices.map {|m| "#{m.token.slice(0,20)}..." }.join("\n")
               %td
                 .btn-group.pull-right
-                  = link_to edit_channel_path(channel), class: 'btn btn-mini' do
+                  = link_to edit_channel_path(channel), class: 'btn btn-default btn-xs' do
                     %i.icon-edit
                     Edit
-                  = link_to push_channel_path(channel), class: 'btn btn-mini' do
+                  = link_to push_channel_path(channel), class: 'btn btn-default btn-xs' do
                     %i.icon-cloud-upload
                     Push
   
-  .span6
-    .page-header
-      %h4 Devices
-      = link_to new_device_path, class: 'btn btn-mini btn-primary' do
-        %i.icon-plus
-        Add device
+  .col-md-6
+    %h4 Devices
+    = link_to new_device_path, class: 'btn btn-xs btn-primary' do
+      %i.icon-plus
+      Add device
     - if @devices.size == 0
       .alert No devices yet.
     - else
@@ -66,6 +64,6 @@
               %td= device.type
               %td.ap-mono= "#{device.token.slice(0,20)}..."
               %td
-                = link_to edit_device_path(device), class: 'btn btn-mini pull-right' do
+                = link_to edit_device_path(device), class: 'btn btn-default btn-xs pull-right' do
                   %i.icon-edit
                   Edit
