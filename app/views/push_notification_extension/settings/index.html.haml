@@ -19,7 +19,7 @@
   .col-md-6
     %h4 Channels
     = link_to new_channel_path, class: 'btn btn-xs btn-primary' do
-      %i.icon-plus
+      %i.fa.fa-plus
       Add channel
     - if @channels.size == 0
       .alert No channels yet.
@@ -38,16 +38,16 @@
               %td
                 .btn-group.pull-right
                   = link_to edit_channel_path(channel), class: 'btn btn-default btn-xs' do
-                    %i.icon-edit
+                    %i.fa.fa-pencil
                     Edit
                   = link_to push_channel_path(channel), class: 'btn btn-default btn-xs' do
-                    %i.icon-cloud-upload
+                    %i.fa.fa-cloud-upload
                     Push
   
   .col-md-6
     %h4 Devices
     = link_to new_device_path, class: 'btn btn-xs btn-primary' do
-      %i.icon-plus
+      %i.fa.fa-plus
       Add device
     - if @devices.size == 0
       .alert No devices yet.
@@ -65,5 +65,5 @@
               %td.ap-mono= "#{device.token.slice(0,20)}..."
               %td
                 = link_to edit_device_path(device), class: 'btn btn-default btn-xs pull-right' do
-                  %i.icon-edit
+                  %i.fa.fa-pencil
                   Edit
