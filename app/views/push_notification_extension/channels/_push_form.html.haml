@@ -1,15 +1,29 @@
-= simple_form_for(@channel, :url => manual_push_channel_path, class: 'form-horizontal') do |f|
-  .form-inputs
-    = f.error :base
-    = f.error_notification
-    = f.label :badge
-    = text_field_tag :badge
-    = f.label :alert
-    = text_field_tag :alert
-    = f.label :sound
-    = text_field_tag :sound
-    = f.label :message
-    = text_field_tag :message
+= simple_form_for(@channel, :url => manual_push_channel_path, html: {class: 'form-horizontal'}) do |f|
+  = f.error :base
+  = f.error_notification
+    
+  .form-group
+    = f.label :badge, class: 'col-md-3 control-label'
+    .col-md-9
+      = text_field_tag :badge, '', class: 'form-control'
+      
+  .form-group
+    = f.label :alert, class: 'col-md-3 control-label'
+    .col-md-9
+      = text_field_tag :alert, '', class: 'form-control'
+      
+  .form-group
+    = f.label :sound, class: 'col-md-3 control-label'
+    .col-md-9
+      = text_field_tag :sound, '', class: 'form-control'
+      
+  .form-group
+    = f.label :message, class: 'col-md-3 control-label'
+    .col-md-9
+      = text_field_tag :message, '', class: 'form-control'
+  
   .form-actions 
     = f.button :submit, "Push", {class: 'btn btn-primary'}
-    = link_to 'Cancel', settings_path, class: 'btn'
+    = link_to 'Cancel', settings_path, class: 'btn btn-link'
+
+%hr
