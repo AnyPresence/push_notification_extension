@@ -10,7 +10,7 @@
         - @available_devices.each do |device|
           %tr
             %td= device.type
-            %td.ap-mono= "#{shorten_device_token(device.token)"
+            %td.ap-mono= "#{shorten_device_token(device.token)}"
             %td.ap-text-center= check_box_tag "device_ids[]", device.id
 
     = f.button :submit, class: 'btn-primary'
