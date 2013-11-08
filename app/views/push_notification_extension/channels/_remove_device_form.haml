@@ -1,0 +1,14 @@
+= simple_form_for(@channel) do |f|
+  %table.table.table-striped
+    %thead
+      %tr 
+        %th Type
+        %th Token
+        %th.ap-text-center Check to remove
+    %tbody
+      - @devices.each do |device|
+        %tr
+          %td= device.type
+          %td.ap-mono= "#{shorten_device_token(device.token)}"
+          %td.ap-text-center= check_box_tag "device_ids_to_remove[]", device.id
+  = f.button :submit, class: 'btn-primary'

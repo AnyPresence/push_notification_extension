@@ -19,16 +19,7 @@
     - if @devices.size == 0
       .alert No devices yet.
     - else
-      %table.table.table-striped
-        %thead
-          %tr 
-            %th Type
-            %th Token
-        %tbody
-          - @devices.each do |device|
-            %tr
-              %td= device.type
-              %td.ap-mono= "#{shorten_device_token(device.token)}"
+      = render :partial => 'remove_device_form'
 
   .col-md-6
     %h4 Add a Device to this Channel
