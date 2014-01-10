@@ -56,7 +56,7 @@ module PushNotificationExtension
       
       status = false
       begin
-        @channel.publish(params[:badge], params[:alert], params[:sound], params[:message])
+        @channel.publish(params[:badge], params[:alert], params[:sound], params[:message], params[:pem_file_name], params[:pem_file_pass])
         status = true
       rescue
         Rails.logger.error("Unable to send push notification: #{$!.message}")

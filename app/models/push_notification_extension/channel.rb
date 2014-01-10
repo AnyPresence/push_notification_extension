@@ -14,7 +14,13 @@ module PushNotificationExtension
     
     has_many :messages, :class_name => "PushNotificationExtension::Message", :inverse_of => :channel
 
-    def publish(badge = 0, alert, sound, message_payload)
+    def publish(badge = 0, alert, sound, message_payload, pem_file_name = nil, pem_file_pass = nil)
+
+      # Duplicate APNS Class and Change PEM on the fly
+      apns_base = APNS.dup
+      apns_base.pem = pem_file_name if !pem_file_name.blank?
+      apns_base.pass = pem_file_pass if !pem_file_pass.blank?
+
       ios_notifications     = []
       android_notifications = []
       android_device_tokens = []
@@ -37,7 +43,7 @@ module PushNotificationExtension
         if device.ios?
           ios_notitifcation_options = {badge: badge, alert: alert, other: ios_message_payload}
           ios_notitifcation_options.merge!(sound: sound) if !sound.blank?
-          ios_notifications << APNS::Notification.new(device.token, ios_notitifcation_options) 
+          ios_notifications << apns_base::Notification.new(device.token, ios_notitifcation_options)
         end
         
         android_device_tokens << device.token if device.android?
@@ -68,7 +74,7 @@ module PushNotificationExtension
         end
         
         ios_notifications.each do |ios_notification|
-          APNS.send_notifications([ios_notification])
+          apns_base.send_notifications([ios_notification])
         end
         
         self.messages << Message.new(alert: alert, badge: badge, message_payload: message_payload)
