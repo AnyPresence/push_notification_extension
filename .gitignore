@@ -39,7 +39,7 @@ InstalledFiles
 certificates/*
 .bundle.tddium*
 .tddium
-
+/.idea/*
 
 # ignore the mongoid folder
 mongoid
