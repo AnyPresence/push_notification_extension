@@ -14,7 +14,11 @@ module PushNotificationExtension
     
     has_many :messages, :class_name => "PushNotificationExtension::Message", :inverse_of => :channel
 
-    def publish(badge = 0, alert, sound, message_payload)
+    def publish(badge = 0, alert, sound, message_payload, config={})
+
+      # Apply New Push Config
+      AP::PushNotificationExtension::PushNotification::config_account(config)
+
       ios_notifications     = []
       android_notifications = []
       android_device_tokens = []
