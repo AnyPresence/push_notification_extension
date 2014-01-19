@@ -47,7 +47,7 @@ module PushNotificationExtension
       channel = ::PushNotificationExtension::Channel.where(name: params[:channel]).first
       if channel
         begin
-          channel.publish(params[:badge], params[:alert], params[:sound], params[:message_payload], params[:pem_file_name], params[:pem_file_pass])
+          channel.publish(params[:badge], params[:alert], params[:sound], params[:message_payload])
           render :json => { :success => true }
         rescue
           render :json => { :success => false, :error => $!.message }
