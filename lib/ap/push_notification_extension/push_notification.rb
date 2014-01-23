@@ -4,8 +4,8 @@ module AP
       @@config = Hash.new
       def self.config_account(config={})
         # Merge in new attributes
-        config = HashWithIndifferentAccess.new(config)
-        @@config.merge!(config)
+        #config = HashWithIndifferentAccess.new(config)
+        @@config = @@config.merge(config).with_indifferent_access
 
         p "Config Before fallbacks: #{@@config.inspect}"
 
