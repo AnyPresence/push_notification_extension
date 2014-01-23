@@ -18,7 +18,10 @@ module AP
           APNS.pem  = "#{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}"
           APNS.pass = ::AP::PushNotificationExtension::PushNotification.config[:apple_cert_password] unless ::AP::PushNotificationExtension::PushNotification.config[:apple_cert_password].blank?
 
-          pem_file = File.open("#{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}")
+          p 'Pem File Location'
+          p APNS.pem
+
+          pem_file = File.open("#{APNS.pem}")
           pem_file_contents = pem_file.read
           unless pem_file_contents.match(/Apple Development IOS Push Services/)
             # This is for production apps/certs only.
@@ -28,7 +31,10 @@ module AP
           APNS.port = 2195
           cert_valid = true
         end
-        raise "No push services configured!" unless cert_valid || @@config[:gcm_api_key]
+
+        p "Cert Valid: #{cert_valid}"
+
+        raise 'No push services configured!' unless cert_valid || @@config[:gcm_api_key]
       end
       
       def self.config
