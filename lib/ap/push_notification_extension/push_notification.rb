@@ -13,6 +13,10 @@ module AP
         @@config[:apple_cert_password] = ENV['AP_PUSH_NOTIFICATIONS_APPLE_CERT_PASSWORD'] if @@config[:apple_cert_password].blank?
 
         cert_valid = false
+
+        p "Config: #{@@config[:apple_cert]}"
+        p "File Path: #{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}"
+
         if @@config[:apple_cert] && File.file?("#{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}")
 
           APNS.pem  = "#{Rails.root}/#{::AP::PushNotificationExtension::PushNotification.config[:apple_cert]}"
