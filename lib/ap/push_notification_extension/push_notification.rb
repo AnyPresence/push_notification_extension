@@ -7,10 +7,14 @@ module AP
         config = HashWithIndifferentAccess.new(config)
         @@config.merge!(config)
 
+        p "Config Before fallbacks: #{@@config.inspect}"
+
         # Fallbacks for missing attributes
         @@config[:gcm_api_key] = ENV['AP_PUSH_NOTIFICATIONS_GCM_API_KEY'] if @@config[:gcm_api_key].blank?
         @@config[:apple_cert] = ENV['AP_PUSH_NOTIFICATIONS_APPLE_CERT'] if @@config[:apple_cert].blank?
         @@config[:apple_cert_password] = ENV['AP_PUSH_NOTIFICATIONS_APPLE_CERT_PASSWORD'] if @@config[:apple_cert_password].blank?
+
+        p "Config After fallbacks: #{@@config.inspect}"
 
         cert_valid = false
 
