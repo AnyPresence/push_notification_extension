@@ -2,8 +2,9 @@
 
 %table.table.table-striped
   %thead
-    %tr 
+    %tr
       %th Time
+      %th Channel
       %th Badge
       %th Alert
       %th Payload
@@ -11,6 +12,7 @@
     - @messages.each do |message|
       %tr
         %td= message.updated_at
+        %td= message.channel.name
         %td= message.badge
         %td= message.alert
         %td= message.message_payload

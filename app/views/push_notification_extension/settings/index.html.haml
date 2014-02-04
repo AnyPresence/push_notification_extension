@@ -1,16 +1,16 @@
 %ul.breadcrumb
   %li
     = link_to 'Home', main_app.admin_root_path
-    
+
   %li
     = link_to 'Extensions', main_app.admin_extensions_path
-    
+
   %li.active Push Notifications
 
 .page-header
   %h1 Push Notifications
   %p Manage push notification settings.
-  
+
 - if notice
   .alert.alert-info
     %p= notice
@@ -26,14 +26,14 @@
     - else
       %table.table.table-striped
         %thead
-          %tr 
+          %tr
             %th Name
             %th Devices
             %th
         %tbody
           - @channels.each do |channel|
             %tr
-              %td= link_to channel.name, edit_channel_path(channel) 
+              %td= link_to channel.name, edit_channel_path(channel)
               %td.ap-mono= channel.devices.map {|m| "#{m.token.slice(0,20)}..." }.join("\n")
               %td
                 .btn-group.pull-right
@@ -43,7 +43,7 @@
                   = link_to push_channel_path(channel), class: 'btn btn-default btn-xs' do
                     %i.fa.fa-cloud-upload
                     Push
-  
+
   .col-md-6
     %h4 Devices
     = link_to new_device_path, class: 'btn btn-xs btn-primary' do
@@ -54,7 +54,7 @@
     - else
       %table.table.table-striped
         %thead
-          %tr 
+          %tr
             %th Type
             %th Token
             %th
@@ -67,3 +67,8 @@
                 = link_to edit_device_path(device), class: 'btn btn-default btn-xs pull-right' do
                   %i.fa.fa-pencil
                   Edit
+
+.row
+  .col-md-15
+    %h4 Previous Pushes
+    = render :partial => 'push_notification_extension/shared/messages'
