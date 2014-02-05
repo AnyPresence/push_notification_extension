@@ -67,8 +67,8 @@
                 = link_to edit_device_path(device), class: 'btn btn-default btn-xs pull-right' do
                   %i.fa.fa-pencil
                   Edit
-
-.row
-  .col-md-15
-    %h4 Previous Pushes
-    = render :partial => 'push_notification_extension/shared/messages'
+.div#message_section
+  .row
+    .col-md-15
+      %h4 Previous Pushes
+      = render :partial => 'push_notification_extension/shared/messages'
